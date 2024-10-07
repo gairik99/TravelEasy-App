@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react"
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { NavBar, HotelCard, Category } from "../../../components"
+import { useCategory } from "../../../context";
 import './Home.css';
 
 
@@ -9,24 +10,30 @@ const Home = () => {
     const [hasMore, setHasMore] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(16);
     const [testData, setTestData] = useState([]);
-
     const [hotels, setHotels] = useState([]);
+
+    const { hotelCategory } = useCategory();
 
     useEffect(() => {
         (async () => {
             try {
-                const { data } = await axios.get("https://travellapp-b9k7.onrender.com/api/hotels");
-                // console.log(data);
+                const url = hotelCategory ?
+                    `https://travellapp-b9k7.onrender.com/api/hotels?category=${hotelCategory}` :
+                    `https://travellapp-b9k7.onrender.com/api/hotels`;
+                const { data } = await axios.get(url);
+                console.log(data);
                 setTestData(data);
                 setHotels(data ? data.slice(0, 16) : []);
+
             }
             catch (err) {
                 console.log(err);
             }
         })()
 
-    }, [])
+    }, [hotelCategory])
 
+    console.log(hotels);
     const fetchMoreData = () => {
         if (hotels.length >= testData.length) {
             setHasMore(false);
@@ -68,7 +75,7 @@ const Home = () => {
                         </main>
                     </InfiniteScroll>
                 ) : (
-                    <></>
+                    <p className="text-empty">No hotels available for Now</p>
                 )}
         </Fragment>
 
