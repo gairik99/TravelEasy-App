@@ -14,8 +14,8 @@
   border: 1px solid var(--accent-color);
   border-radius: 50%;
   color: var(--text-color-primary);
-  height: 24rem;
-  width: 24rem;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 .btn-left {
   left: 0.5rem;

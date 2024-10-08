@@ -1,12 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import './HotelCard.css'
 
 // eslint-disable-next-line react/prop-types
 const HotelCard = ({ hotel }) => {
-    // eslint-disable-next-line react/prop-types, no-unused-vars
+
+    // eslint-disable-next-line react/prop-types
     const { _id, name, image, address, state, rating, price } = hotel;
+    const navigate = useNavigate();
+    const handleHotelCardClick = () => {
+        navigate(`/hotels/${_id}`)
+    }
     return (
-        <div className="relative hotelcard-container shadow cursor-pointer">
-            <div >
+        <div className="relative hotelcard-container shadow cursor-pointer" >
+            <div onClick={handleHotelCardClick}>
                 <img className="img" src={image} alt='name' />
                 <div className="hotelcard-details">
                     <div className="d-flex align-center">

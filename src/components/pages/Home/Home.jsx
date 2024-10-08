@@ -21,7 +21,7 @@ const Home = () => {
                     `https://travellapp-b9k7.onrender.com/api/hotels?category=${hotelCategory}` :
                     `https://travellapp-b9k7.onrender.com/api/hotels`;
                 const { data } = await axios.get(url);
-                console.log(data);
+                // console.log(data);
                 setTestData(data);
                 setHotels(data ? data.slice(0, 16) : []);
 
