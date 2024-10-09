@@ -31,7 +31,7 @@ export const Category = () => {
 
         setHotelCategory(category);
     }
-    console.log(hotelCategory);
+    // console.log(hotelCategory);
 
     const categoriesToDisplay = categories.slice(startIndex, startIndex + 10);
 

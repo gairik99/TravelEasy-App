@@ -1,10 +1,20 @@
 import './FinalPrice.css'
+import { useDate } from '../../context';
+import { DateSelector } from '../DateSelector/DateSelector';
 
 // eslint-disable-next-line react/prop-types
 export const FinalPrice = ({ singleHotel }) => {
 
     // eslint-disable-next-line react/prop-types, no-unused-vars
     const { _id, price, rating } = singleHotel;
+    const { guests, dateDispatch, checkInDate, checkOutDate } = useDate();
+
+    const handleGuestChange = (event) => {
+        dateDispatch({
+            type: "GUESTS",
+            payload: event.target.value,
+        });
+    };
     return (
         <div className="price-details-container d-flex direction-column gap shadow">
             <div className="price-rating d-flex align-center justify-space-between">
@@ -20,16 +30,16 @@ export const FinalPrice = ({ singleHotel }) => {
                 <div className="grid-container-two-col selected-dates">
                     <div className="checkin loc-container">
                         <label className="label">Check in</label>
-                        {/* <DateSelector checkInType="in" /> */}
+                        <DateSelector checkInType="in" />
                     </div>
                     <div className="checkin loc-container">
                         <label className="label">Check Out</label>
-                        {/* <DateSelector checkInType="out" /> */}
+                        <DateSelector checkInType="out" />
                     </div>
                 </div>
                 <div className="guests gutter-sm">
                     <p>GUESTS</p>
-                    {/* {guests <= 0 ? (
+                    {guests <= 0 ? (
                         <input
                             className="guest-count-input"
                             type="number"
@@ -39,8 +49,8 @@ export const FinalPrice = ({ singleHotel }) => {
                         />
                     ) : (
                         <span>{guests} guests</span>
-                    )} */
-                        <span>2 guests</span>}
+                    )}
+
                 </div>
             </div>
             <div>

@@ -18,9 +18,8 @@ const Home = () => {
     useEffect(() => {
         (async () => {
             try {
-                const url = hotelCategory ?
-                    `https://travellapp-b9k7.onrender.com/api/hotels?category=${hotelCategory}` :
-                    `https://travellapp-b9k7.onrender.com/api/hotels`;
+                const url = `https://travellapp-b9k7.onrender.com/api/hotels?category=${hotelCategory}`
+
                 const { data } = await axios.get(url);
                 // console.log(data);
                 setTestData(data);
@@ -34,7 +33,7 @@ const Home = () => {
 
     }, [hotelCategory])
 
-    console.log(hotels);
+    // console.log(hotels);
     const fetchMoreData = () => {
         if (hotels.length >= testData.length) {
             setHasMore(false);

@@ -5,6 +5,7 @@
 .host-details .p {
   color: var(--text-color-primary);
   font-size: 1rem;
+  padding-left: 0;
 }
 
 .span {

@@ -10,7 +10,7 @@
 
 .destionation-options {
   background-color: var(--background-color);
-  top: 3rem;
+  top: 4rem;
   left: 50%;
   transform: translate(-50%, 0);
 }
@@ -53,7 +53,7 @@
   max-height: 50vh;
   overflow-y: auto;
   border-radius: 4px;
-  top: 8rem;
+  top: 10rem;
   left: 22%;
 }
 

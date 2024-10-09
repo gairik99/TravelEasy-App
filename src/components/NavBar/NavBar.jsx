@@ -3,7 +3,7 @@ import { useDate } from '../../context';
 
 
 const NavBar = () => {
-    const { dateDispatch } = useDate();
+    const { destination, checkInDate, checkOutDate, guests, dateDispatch } = useDate();
 
     const handleSearchClick = () => {
         dateDispatch({
@@ -16,11 +16,21 @@ const NavBar = () => {
                 <a className="link" href="/">TravelEasy</a>
             </h1>
             <div className="form-container d-flex align-center cursor-pointer shadow" onClick={handleSearchClick}>
-                <span className="form-option">Any Where</span>
+                <span className="form-option">{destination || "Any Where"}</span>
                 <span className='border-right-1px' ></span>
-                <span className="form-option">Any Week</span>
+                <span className="form-option">  {checkInDate && checkOutDate
+                    ? `${checkInDate.toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "short",
+                    })} 
+                    - 
+                    ${checkOutDate.toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "short",
+                    })}`
+                    : "Any Week"}</span>
                 <span className='border-right-1px'></span>
-                <span className="form-option">Add Guests</span>
+                <span className="form-option">{guests > 0 ? `${guests} guests` : "Add Guests"}</span>
                 <span className="search material-icons-outlined">search</span>
             </div>
             <nav className="d-flex  align-center gap-large">

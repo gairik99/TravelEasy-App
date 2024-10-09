@@ -12,10 +12,16 @@ export const DateSelector = ({ checkInType }) => {
             payload: date
         })
     }
-    console.log(checkInDate, checkOutDate);
+    // console.log(checkInDate, checkOutDate);
+    const handleDateFocus = () => {
+        dateDispatch({
+            type: "DATE_FOCUS",
+        });
+    };
     return (
-        <DatePicker dateFormat="dd/mm/yy" placeholderText="Add Dates" closeOnScroll={true}
+        <DatePicker dateFormat="dd/MM/yy" placeholderText="Add Dates" closeOnScroll={true}
             className="search-dest input" onChange={(date) => handleDateChange(date)}
+            onFocus={handleDateFocus}
             selected={checkInType === "in" ? checkInDate : checkOutDate}
         />
     )

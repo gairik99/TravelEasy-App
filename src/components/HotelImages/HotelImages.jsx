@@ -4,7 +4,7 @@ import './HotelImages.css'
 export const HotelImages = ({ singleHotel }) => {
     // eslint-disable-next-line react/prop-types
     const { image, imageArr } = singleHotel;
-    console.log(image);
+    // console.log(image);
     return (
         <div className='hotel-image-container d-flex gap-sm'>
             <div className="primary-image-container">
