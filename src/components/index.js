@@ -6,5 +6,6 @@ export { HotelImages } from './HotelImages/HotelImages'
 export { FinalPrice } from './FinalPrice/FinalPrice'
 export { DateSelector } from './DateSelector/DateSelector'
 export { SearchStayWithDates } from './SearchStayWithDates/SearchStayWithDates'
+export { Filter } from './Filters/Filter'
 
 

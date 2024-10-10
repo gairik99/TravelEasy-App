@@ -7,6 +7,7 @@ export const FinalPrice = ({ singleHotel }) => {
 
     // eslint-disable-next-line react/prop-types, no-unused-vars
     const { _id, price, rating } = singleHotel;
+    // eslint-disable-next-line no-unused-vars
     const { guests, dateDispatch, checkInDate, checkOutDate } = useDate();
 
     const handleGuestChange = (event) => {
