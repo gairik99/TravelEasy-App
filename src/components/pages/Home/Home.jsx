@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { NavBar, HotelCard, Category, SearchStayWithDates } from "../../../components"
-import { useCategory, useDate } from "../../../context";
+import { NavBar, HotelCard, Category, SearchStayWithDates, Filter } from "../../../components"
+import { useCategory, useDate, useFilter } from "../../../context";
+import { getHotelsByPrice } from '../../../utils/price-range'
+import { getHotelsByRoomsAndBeds } from "../../../utils/rooms-beds";
+import { getHotelsByPropertyType } from "../../../utils/property";
+import { getHotelsByRatings } from "../../../utils/rating";
+import { getHotelsByCancelation } from "../../../utils/hotel-cancel";
 import './Home.css';
 
 
@@ -14,6 +19,7 @@ const Home = () => {
 
     const { hotelCategory } = useCategory();
     const { isSearchModalOpen } = useDate();
+    const { isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, traveloRating, isCancelable } = useFilter();
 
     useEffect(() => {
         (async () => {
@@ -51,7 +57,25 @@ const Home = () => {
         }, 1000);
     };
 
-
+    const filteredHotelsByPrice = getHotelsByPrice(hotels, priceRange);
+    const filteredHotelsByBedsAndRooms = getHotelsByRoomsAndBeds(
+        filteredHotelsByPrice,
+        noOfBathrooms,
+        noOfBedrooms,
+        noOfBeds
+    );
+    const filteredHotelsByPropertyType = getHotelsByPropertyType(
+        filteredHotelsByBedsAndRooms,
+        propertyType
+    );
+    const filteredHotelsByRatings = getHotelsByRatings(
+        filteredHotelsByPropertyType,
+        traveloRating
+    );
+    const filteredHotelsByCancelation = getHotelsByCancelation(
+        filteredHotelsByRatings,
+        isCancelable
+    );
     return (
         <div className="relative">
             <NavBar />
@@ -68,8 +92,8 @@ const Home = () => {
                         endMessage={<p className="alert-text">You have seen it all</p>}
                     >
                         <main className="main d-flex align-center wrap gap-larger">
-                            {hotels &&
-                                hotels.map((hotel) => (
+                            {filteredHotelsByCancelation &&
+                                filteredHotelsByCancelation.map((hotel) => (
                                     <HotelCard key={hotel._id} hotel={hotel} />
                                 ))}
                         </main>
@@ -79,6 +103,9 @@ const Home = () => {
                 )}
             {
                 isSearchModalOpen && <SearchStayWithDates />
+            }
+            {
+                isFilterModalOpen && <Filter />
             }
         </div>
 
