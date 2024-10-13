@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { CategoryProvider, DateProvider, FilterProvider } from './context/index.js'
+import { CategoryProvider, DateProvider, FilterProvider, AuthProvider } from './context/index.js'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
@@ -11,7 +11,9 @@ createRoot(document.getElementById('root')).render(
       <CategoryProvider>
         <DateProvider>
           <FilterProvider>
-            <App />
+            <AuthProvider>
+              <App />
+            </AuthProvider>
           </FilterProvider>
         </DateProvider>
       </CategoryProvider>
