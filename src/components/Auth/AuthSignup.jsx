@@ -102,6 +102,11 @@ export const AuthSignup = () => {
         authDispatch({
             type: "CLEAR_USER_DATA",
         });
+
+        authDispatch({
+            type: "SET_TO_LOGIN",
+        });
+
     };
 
     return (
