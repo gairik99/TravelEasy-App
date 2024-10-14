@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import './SingleHotel.css'
+import './singleHotel.css'
 import { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavBar, HotelImages, HotelDetails, FinalPrice, SearchStayWithDates, ProfileDropDown, AuthModal, Alert } from '../../../components';
