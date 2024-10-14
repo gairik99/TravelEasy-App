@@ -92,7 +92,7 @@ export const Payment = () => {
             <header className="heading">
                 <h1 className="heading-1">
                     <Link className="link" to="/">
-                        TravelO
+                        TravelEasy
                     </Link>
                 </h1>
             </header>
@@ -151,7 +151,7 @@ export const Payment = () => {
                     </div>
                     <div className="tag">
                         Your booking is protected by{" "}
-                        <strong className="strong">TravelO</strong> cover
+                        <strong className="strong">TravelEasy</strong> cover
                     </div>
                     <div className="price-detail-container">
                         <div className="price-distribution d-flex direction-column">
