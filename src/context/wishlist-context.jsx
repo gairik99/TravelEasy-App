@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { wishlistReducer } from "../reducer/wishlist-reducer";
 
-const initialValue = {
+const initialValue = JSON.parse(localStorage.getItem('wishlistState')) || {
     wishlist: [],
 };
 
@@ -9,10 +9,8 @@ const WishlistContext = createContext(initialValue);
 
 // eslint-disable-next-line react/prop-types
 const WishlistProvider = ({ children }) => {
-    const [{ wishlist }, wishlistDispatch] = useReducer(
-        wishlistReducer,
-        initialValue
-    );
+    const [state, wishlistDispatch] = useReducer(wishlistReducer, initialValue);
+    const { wishlist } = state;
 
     return (
         <WishlistContext.Provider value={{ wishlist, wishlistDispatch }}>

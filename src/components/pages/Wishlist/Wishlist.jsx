@@ -1,11 +1,14 @@
 import './Wishlist.css'
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
-import { NavBar, HotelCard, } from '../../../components'
-import { useWishlist } from '../../../context';
+import { NavBar, HotelCard, AuthModal, ProfileDropDown, Alert } from '../../../components'
+import { useWishlist, useAuth, useAlert } from '../../../context';
 
 export const Wishlist = () => {
     const { wishlist } = useWishlist();
+
+    const { isAuthModalOpen, isDropDownModalOpen } = useAuth();
+    const { alert } = useAlert();
 
     const navigate = useNavigate();
 
@@ -24,9 +27,9 @@ export const Wishlist = () => {
                         wishlist.map((hotel) => <HotelCard key={hotel._id} hotel={hotel} />)}
                 </section> : <p className="d-flex justify-center">Wishlist Empty. &nbsp;<span className="click-here" onClick={handleClickHereClick}>Click here </span> &nbsp; to add to wishslit</p>
             }
-
-
-
+            {isDropDownModalOpen && <ProfileDropDown />}
+            {isAuthModalOpen && <AuthModal />}
+            {alert.open && <Alert />}
         </Fragment>
 
     );

@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { authReducer } from "../reducer/auth-reducer";
-const initialValue = {
+
+const initialValue = JSON.parse(localStorage.getItem('authState')) || {
     isAuthModalOpen: false,
     isDropDownModalOpen: false,
     username: "",
@@ -17,21 +18,19 @@ const AuthContext = createContext(initialValue);
 
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
-    const [
-        {
-            isAuthModalOpen,
-            isDropDownModalOpen,
-            username,
-            email,
-            password,
-            number,
-            accessToken,
-            name,
-            selectedTab,
-            confirmPassword,
-        },
-        authDispatch,
-    ] = useReducer(authReducer, initialValue);
+    const [state, authDispatch] = useReducer(authReducer, initialValue);
+    const {
+        isAuthModalOpen,
+        isDropDownModalOpen,
+        username,
+        email,
+        password,
+        number,
+        accessToken,
+        name,
+        selectedTab,
+        confirmPassword,
+    } = state;
 
     return (
         <AuthContext.Provider

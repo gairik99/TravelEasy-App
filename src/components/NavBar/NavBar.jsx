@@ -4,7 +4,7 @@ import { useDate, useAuth } from '../../context';
 
 const NavBar = () => {
     const { destination, checkInDate, checkOutDate, guests, dateDispatch } = useDate();
-    const { authDispatch } = useAuth();
+    const { authDispatch, accessToken, name } = useAuth();
 
     const handleSearchClick = () => {
         dateDispatch({
@@ -12,20 +12,21 @@ const NavBar = () => {
         })
     }
     const handleAuthClick = () => {
-        // if (accessToken) {
-        //     authDispatch({
-        //         type: "SHOW_DROP_DOWN_OPTIONS"
-        //     })
-        // } else {
-        //     authDispatch({
-        //         type: "SHOW_AUTH_MODAL",
-        //     });
-        // }
+        if (accessToken) {
+            authDispatch({
+                type: "SHOW_DROP_DOWN_OPTIONS"
+            })
+        } else {
+            authDispatch({
+                type: "SHOW_AUTH_MODAL",
+            });
+        }
 
-        authDispatch({
-            type: "SHOW_AUTH_MODAL",
-        });
+        // authDispatch({
+        //     type: "SHOW_AUTH_MODAL",
+        // });
     };
+    console.log(name);
     return (
         <header className="heading d-flex align-center">
             <h1 className="heading-1">
@@ -50,6 +51,7 @@ const NavBar = () => {
                 <span className="search material-icons-outlined">search</span>
             </div>
             <nav className="d-flex  align-center gap-large" onClick={handleAuthClick}>
+                <span className="form-option">{name}</span>
                 <div className="nav d-flex align-center cursor-pointer">
                     <span className="material-icons-outlined profile-option menu">
                         menu

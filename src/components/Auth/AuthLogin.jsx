@@ -2,13 +2,13 @@ import "./Auth.css";
 import { validateNumber } from "../../utils/number-regex";
 import { validatePassword } from "../../utils/password-regex";
 import { loginHandler } from "../../services/login-service";
-import { useAuth } from "../../context";
+import { useAuth, useAlert } from "../../context";
 
 let isNumberValid, isPasswordValid;
 
 export const AuthLogin = () => {
     const { authDispatch, number, password } = useAuth();
-    // const { setAlert } = useAlert();
+    const { setAlert } = useAlert();
 
     const handleNumberChange = (event) => {
         isNumberValid = validateNumber(event.target.value);
@@ -39,7 +39,7 @@ export const AuthLogin = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         if (isNumberValid && isPasswordValid) {
-            const { accessToken, username } = await loginHandler(number, password);
+            const { accessToken, username } = await loginHandler(number, password, setAlert);
             authDispatch({
                 type: "SET_ACCESS_TOKEN",
                 payload: accessToken,
@@ -62,7 +62,7 @@ export const AuthLogin = () => {
         const { accessToken, username } = await loginHandler(
             7878787878,
             "Abcd#900",
-            // setAlert
+            setAlert
         );
         authDispatch({
             type: "SET_ACCESS_TOKEN",
@@ -125,3 +125,4 @@ export const AuthLogin = () => {
         </div>
     );
 };
+

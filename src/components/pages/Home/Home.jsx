@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { NavBar, HotelCard, Category, SearchStayWithDates, Filter, AuthModal } from "../../../components"
-import { useCategory, useDate, useFilter, useAuth } from "../../../context";
+import { NavBar, HotelCard, Category, SearchStayWithDates, Filter, AuthModal, Alert, ProfileDropDown } from "../../../components"
+import { useCategory, useDate, useFilter, useAuth, useAlert } from "../../../context";
 import { getHotelsByPrice } from '../../../utils/price-range'
 import { getHotelsByRoomsAndBeds } from "../../../utils/rooms-beds";
 import { getHotelsByPropertyType } from "../../../utils/property";
@@ -20,7 +20,9 @@ const Home = () => {
     const { hotelCategory } = useCategory();
     const { isSearchModalOpen } = useDate();
     const { isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, traveloRating, isCancelable } = useFilter();
-    const { isAuthModalOpen } = useAuth();
+    const { isAuthModalOpen, isDropDownModalOpen } = useAuth();
+    const { alert } = useAlert();
+    // console.log(isAuthModalOpen);
 
     useEffect(() => {
         (async () => {
@@ -109,6 +111,8 @@ const Home = () => {
                 isFilterModalOpen && <Filter />
             }
             {isAuthModalOpen && <AuthModal />}
+            {isDropDownModalOpen && <ProfileDropDown />}
+            {alert.open && <Alert />}
         </div>
 
     )

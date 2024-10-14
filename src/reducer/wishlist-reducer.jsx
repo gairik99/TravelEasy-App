@@ -1,21 +1,20 @@
 export const wishlistReducer = (state, { type, payload }) => {
+    let newState;
     switch (type) {
         case "ADD_TO_WISHLIST":
-            return {
-                ...state,
-                wishlist: [...state.wishlist, payload],
-            };
+            newState = { ...state, wishlist: [...state.wishlist, payload] };
+            break;
         case "REMOVE_FROM_WISHLIST":
-            return {
-                ...state,
-                wishlist: state.wishlist.filter((hotel) => hotel._id !== payload),
-            };
+            newState = { ...state, wishlist: state.wishlist.filter((hotel) => hotel._id !== payload) };
+            break;
         case "CLEAR_WISHLIST":
-            return {
-                ...state,
-                wishlist: []
-            }
+            newState = { ...state, wishlist: [] };
+            break;
         default:
-            return state
+            newState = state;
     }
+
+    // Save to localStorage
+    localStorage.setItem('wishlistState', JSON.stringify(newState));
+    return newState;
 };

@@ -1,14 +1,20 @@
 import './FinalPrice.css'
-import { useDate } from '../../context';
+import { useDate, useAuth, useAlert } from '../../context';
 import { DateSelector } from '../DateSelector/DateSelector';
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export const FinalPrice = ({ singleHotel }) => {
 
-    // eslint-disable-next-line react/prop-types, no-unused-vars
+
+    // eslint-disable-next-line react/prop-types
     const { _id, price, rating } = singleHotel;
-    // eslint-disable-next-line no-unused-vars
+
+    const navigate = useNavigate();
+
     const { guests, dateDispatch, checkInDate, checkOutDate } = useDate();
+    const { accessToken, authDispatch } = useAuth();
+    const { setAlert } = useAlert();
 
     const handleGuestChange = (event) => {
         dateDispatch({
@@ -16,6 +22,36 @@ export const FinalPrice = ({ singleHotel }) => {
             payload: event.target.value,
         });
     };
+
+    const handleReserveClick = () => {
+        if (!checkInDate) {
+            setAlert({
+                open: true,
+                message: "Select a Check-in Date",
+                type: "info"
+            })
+        } else if (!checkOutDate) {
+            setAlert({
+                open: true,
+                message: "Select a Check-out Date",
+                type: "info"
+            })
+        } else if (guests < 1) {
+            setAlert({
+                open: true,
+                message: "Add number of guests",
+                type: "info"
+            })
+        }
+        if (accessToken) {
+            navigate(`/confirm-booking/stay/chill/${_id}`);
+        } else {
+            authDispatch({
+                type: "SHOW_AUTH_MODAL"
+            })
+        }
+    };
+
     return (
         <div className="price-details-container d-flex direction-column gap shadow">
             <div className="price-rating d-flex align-center justify-space-between">
@@ -55,7 +91,7 @@ export const FinalPrice = ({ singleHotel }) => {
                 </div>
             </div>
             <div>
-                <button className="button btn-reserve btn-primary cursor" >
+                <button className="button btn-reserve btn-primary cursor" onClick={handleReserveClick} >
                     Reserve
                 </button>
             </div>

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import './HotelCard.css'
-import { useWishlist, useAuth } from '../../context';
+import { useWishlist, useAuth, useAlert } from '../../context';
 import { findHotelInWishlist } from '../../utils/find-hotel-in-wishlist';
 
 // eslint-disable-next-line react/prop-types
@@ -10,6 +10,7 @@ const HotelCard = ({ hotel }) => {
     const { _id, name, image, address, state, rating, price } = hotel;
     const { wishlistDispatch, wishlist } = useWishlist();
     const { accessToken, authDispatch } = useAuth();
+    const { setAlert } = useAlert();
     const isHotelInWishlist = findHotelInWishlist(wishlist, _id);
 
     const navigate = useNavigate();
@@ -24,7 +25,12 @@ const HotelCard = ({ hotel }) => {
                     type: "ADD_TO_WISHLIST",
                     payload: hotel
                 });
-                navigate('/wishlist')
+                // navigate('/wishlist')
+                setAlert({
+                    open: true,
+                    message: `Hotel:: ${name} added to wishlist`,
+                    type: "success"
+                })
 
             }
             else {
@@ -32,6 +38,11 @@ const HotelCard = ({ hotel }) => {
                     type: "REMOVE_FROM_WISHLIST",
                     payload: _id,
                 });
+                setAlert({
+                    open: true,
+                    message: `Hotel:: ${name} removed from wishlist`,
+                    type: "success"
+                })
 
             }
         } else {
@@ -41,7 +52,7 @@ const HotelCard = ({ hotel }) => {
         }
     };
 
-    console.log(wishlist);
+    // console.log(wishlist);
 
     return (
         <div className="relative hotelcard-container shadow cursor-pointer" >

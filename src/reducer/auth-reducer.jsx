@@ -1,50 +1,32 @@
-export const authReducer = (state, {
-    type,
-    payload
-}) => {
+export const authReducer = (state, { type, payload }) => {
+    let newState;
     switch (type) {
         case "SHOW_AUTH_MODAL":
-            return {
-                ...state,
-                isAuthModalOpen: !state.isAuthModalOpen,
-            };
+            newState = { ...state, isAuthModalOpen: !state.isAuthModalOpen };
+            break;
         case "SET_TO_LOGIN":
-            return {
-                ...state,
-                selectedTab: "login",
-            };
+            newState = { ...state, selectedTab: "login" };
+            break;
         case "SET_TO_SIGNUP":
-            return {
-                ...state,
-                selectedTab: "signup",
-            };
+            newState = { ...state, selectedTab: "signup" };
+            break;
         case "NUMBER":
-            return {
-                ...state,
-                number: payload,
-            };
+            newState = { ...state, number: payload };
+            break;
         case "NAME":
-            return {
-                ...state,
-                username: payload,
-            };
+            newState = { ...state, username: payload };
+            break;
         case "EMAIL":
-            return {
-                ...state,
-                email: payload,
-            };
+            newState = { ...state, email: payload };
+            break;
         case "PASSWORD":
-            return {
-                ...state,
-                password: payload,
-            };
+            newState = { ...state, password: payload };
+            break;
         case "CONFIRM_PASSWORD":
-            return {
-                ...state,
-                confirmPassword: payload,
-            };
+            newState = { ...state, confirmPassword: payload };
+            break;
         case "CLEAR_USER_DATA":
-            return {
+            newState = {
                 ...state,
                 username: "",
                 number: "",
@@ -52,28 +34,24 @@ export const authReducer = (state, {
                 password: "",
                 confirmPassword: "",
             };
+            break;
         case "SET_ACCESS_TOKEN":
-            return {
-                ...state,
-                accessToken: payload,
-            };
+            newState = { ...state, accessToken: payload };
+            break;
         case "SET_USER_NAME":
-            return {
-                ...state,
-                name: payload,
-            };
+            newState = { ...state, name: payload };
+            break;
         case "SHOW_DROP_DOWN_OPTIONS":
-            return {
-                ...state,
-                isDropDownModalOpen: !state.isDropDownModalOpen
-            }
+            newState = { ...state, isDropDownModalOpen: !state.isDropDownModalOpen };
+            break;
         case "CLEAR_CREDENTIALS":
-            return {
-                ...state,
-                accessToken: "",
-                name: ""
-            }
+            newState = { ...state, accessToken: "", name: "" };
+            break;
         default:
-            return state;
+            newState = state;
     }
+
+    // Save to localStorage
+    localStorage.setItem('authState', JSON.stringify(newState));
+    return newState;
 };

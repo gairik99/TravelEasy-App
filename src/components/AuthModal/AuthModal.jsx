@@ -1,10 +1,11 @@
 import './AuthModal.css'
 import { AuthLogin, AuthSignup } from "../index";
+
 import { useAuth } from "../../context";
 
 export const AuthModal = () => {
     const { authDispatch, selectedTab } = useAuth();
-
+    // console.log(accessToken);
     const handleLoginClick = () => {
         authDispatch({
             type: "SET_TO_LOGIN",
@@ -17,7 +18,7 @@ export const AuthModal = () => {
         });
     };
 
-    const hanelModalCloseClick = () => {
+    const handleModalCloseClick = () => {
         authDispatch({
             type: "SHOW_AUTH_MODAL",
         });
@@ -25,8 +26,10 @@ export const AuthModal = () => {
 
     return (
         <div className="auth-modal-container fixed">
+
             <div className="auth-modal absolute shadow right-0">
                 <div className="d-flex align-center shadow">
+
                     <button
                         className={`button btn-auth grow-shrink-basis cursor-pointer ${selectedTab === "login" ? "btn-auth-selected" : ""
                             }`}
@@ -43,7 +46,7 @@ export const AuthModal = () => {
                     </button>
                     <button
                         className="button btn-auth btn-close d-flex align-center justify-center cursor-pointer"
-                        onClick={hanelModalCloseClick}
+                        onClick={handleModalCloseClick}
                     >
                         <span className="material-icons-outlined">close</span>
                     </button>
@@ -58,6 +61,7 @@ export const AuthModal = () => {
                     )}
                 </div>
             </div>
+
         </div>
     );
 };
