@@ -25,14 +25,23 @@ To book any hotel, simply sign up and log in. Click on any hotel on the homepage
 
 ##  Tech Stack
 - HTML/CSS
+- Material UI
+- LightUi
 - ReactJs
 ## Live Link
 
 - https://traveleasygairik.netlify.app/
 
+## Demo
+![Screenshot (17)](https://github.com/user-attachments/assets/a7447dda-a49f-4d8a-8b43-c58497bf21ff)
 
+![Screenshot (18)](https://github.com/user-attachments/assets/aef42465-08cf-4a00-9e80-db259f7bb5a1)
 
+![Screenshot (20)](https://github.com/user-attachments/assets/19e2d1bf-48c4-45e3-9aa9-8c1bc3e0a1ea)
 
+![Screenshot (21)](https://github.com/user-attachments/assets/16f6d0db-b4f4-41e7-8913-f1f43c83f07f)
+
+![Screenshot (22)](https://github.com/user-attachments/assets/5471648e-feaf-4df1-8096-1215f5735bd5)
 
 
 # React + Vite
