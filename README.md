@@ -1,15 +1,19 @@
 
-# Easy Life
+# TravelEasy
 
-Easy Life is a cool browser extension that helps you with managing your daily 
-task
+A full-stack web application that allows users to search and book hotels online. 
+
 
 ## Features
 - Home Page
-In the home page, you can start by adding your name and then press the enter key which will route you to the task page. If you refresh the home page you will see a different soothing background image.
+Dive into our curated selection of hotels, featuring categories like National Parks of India, serene islands, and more. Fine-tune your search to meet your needs: filter by price range, number of bedrooms, ratings, and other preferences. Plus, effortlessly search by your destination to find the perfect stay. Let’s make your next adventure unforgettable.
 
-- Task Page
-In the task page, you can add your main/focus task of the day, once you complete the task you can eihter check it or clear it to create a new task. There is a beautiful ToDo at the bottom right of the page that let's you add todos. When the dat changes the main task will be deleted but the todo will still be there.
+- Wishlist Page
+Once logged in, simply click the button in the top right corner of any hotel image to add it to your wishlist. Access your wishlist from the dropdown menu, and explore all your saved hotels in one place.
+
+- Booking
+To book any hotel, simply sign up and log in. Click on any hotel on the homepage to open its detailed page, where you can fill in the required information. Head to the payment page, complete your transaction, and voilà— your hotel is booked! Ready to make your next trip a breeze! 
+
 
 
 ## 🔗 Author
