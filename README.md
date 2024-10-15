@@ -28,7 +28,7 @@ To book any hotel, simply sign up and log in. Click on any hotel on the homepage
 - ReactJs
 ## Live Link
 
-- https://dailyroutinemanager.netlify.app
+- https://traveleasygairik.netlify.app/
 
 
 
