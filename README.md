@@ -5,13 +5,13 @@ A full-stack web application that allows users to search and book hotels online.
 
 
 ## Features
--  Home Page
+-  Home Page <br/>
 Dive into our curated selection of hotels, featuring categories like National Parks of India, serene islands, and more. Fine-tune your search to meet your needs: filter by price range, number of bedrooms, ratings, and other preferences. Plus, effortlessly search by your destination to find the perfect stay. Let’s make your next adventure unforgettable.
 
--  Wishlist Page
+-  Wishlist Page  <br/>
 Once logged in, simply click the button in the top right corner of any hotel image to add it to your wishlist. Access your wishlist from the dropdown menu, and explore all your saved hotels in one place.
 
--  Booking
+-  Booking  <br/>
 To book any hotel, simply sign up and log in. Click on any hotel on the homepage to open its detailed page, where you can fill in the required information. Head to the payment page, complete your transaction, and voilà— your hotel is booked! Ready to make your next trip a breeze! 
 
 
