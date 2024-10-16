@@ -53,6 +53,11 @@ export const SearchStayWithDates = () => {
         });
         navigate(`/hotels/${destination}/${hotelCategory}`);
     };
+    const handleSearchCloseClick = () => {
+        dateDispatch({
+            type: "CLOSE_SEARCH_MODAL"
+        });
+    }
 
     const destinationOptions = hotels.filter(
         ({ address, city, state, country }) =>
@@ -66,7 +71,11 @@ export const SearchStayWithDates = () => {
 
     return (
         <div className="destination-container">
+
             <div className="destionation-options d-flex align-center absolute">
+                <button className="button btn-auth btn-close d-flex align-center justify-center cursor-pointer " onClick={handleSearchCloseClick}>
+                    <span className="material-icons-outlined">close</span>
+                </button>
                 <div className="location-container">
                     <label className="label">Where</label>
                     <input className="input search-dest" placeholder="Search Destination" autoFocus onChange={handleDestinationChange} onFocus={handleDestinationFocus} value={destination} />

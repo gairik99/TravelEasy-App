@@ -1,13 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
-import { HotelCard, NavBar } from '../../../components'
-import { useDate, useCategory } from "../../../context";
+import { HotelCard, NavBar, Alert } from '../../../components'
+import { useDate, useCategory, useAlert } from "../../../context";
 import axios from "axios";
 
 export const SearchResults = () => {
     const { destination } = useDate();
     const { hotelCategory } = useCategory();
     const [hotels, setHotels] = useState([]);
-    // const { alert } = useAlert();
+    const { alert } = useAlert();
 
     // console.log("Hotel Category:", hotelCategory);
     // console.log("Destination:", destination);
@@ -50,7 +50,7 @@ export const SearchResults = () => {
                     <h3>Nothing Found</h3>
                 )}
             </section>
-            {/* {alert.open && <Alert />} */}
+            {alert.open && <Alert />}
         </Fragment>
     );
 };

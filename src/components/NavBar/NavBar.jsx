@@ -7,6 +7,7 @@ const NavBar = () => {
     const { authDispatch, accessToken, name } = useAuth();
 
     const handleSearchClick = () => {
+
         dateDispatch({
             type: 'OPEN_SEARCH_MODAL'
         })
