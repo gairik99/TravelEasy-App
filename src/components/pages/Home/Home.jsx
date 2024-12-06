@@ -102,7 +102,8 @@ const Home = () => {
                         </main>
                     </InfiniteScroll>
                 ) : (
-                    <p className="text-empty">No hotels available for Now</p>
+                    // <p className="text-empty">No hotels available for Now</p>
+                    <img src="/loading.svg" alt="...loading" style={{ margin: "40vh 0 0 40vw", backgroundColor: "black" }} />
                 )}
             {
                 isSearchModalOpen && <SearchStayWithDates />
