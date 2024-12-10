@@ -3,11 +3,13 @@ import { validateNumber } from "../../utils/number-regex";
 import { validatePassword } from "../../utils/password-regex";
 import { loginHandler } from "../../services/login-service";
 import { useAuth, useAlert } from "../../context";
+import { useState } from "react";
 
 let isNumberValid, isPasswordValid;
 
 export const AuthLogin = () => {
     const { authDispatch, number, password } = useAuth();
+    const [err, setErr] = useState(false);
     const { setAlert } = useAlert();
 
     const handleNumberChange = (event) => {
@@ -48,14 +50,21 @@ export const AuthLogin = () => {
                 type: "SET_USER_NAME",
                 payload: username,
             });
+            authDispatch({
+                type: "SHOW_AUTH_MODAL",
+            });
 
         }
-        authDispatch({
-            type: "CLEAR_USER_DATA",
-        });
-        authDispatch({
-            type: "SHOW_AUTH_MODAL",
-        });
+        else {
+            setErr(true);
+        }
+        // authDispatch({
+        //     type: "CLEAR_USER_DATA",
+        // });
+
+        // authDispatch({
+        //     type: "SHOW_AUTH_MODAL",
+        // });
     };
 
     const handleTestCredentialsClick = async () => {
@@ -109,7 +118,11 @@ export const AuthLogin = () => {
                         required
                         onChange={handlePasswordChange}
                     />
+                    {
+                        err && <span style={{ padding: "2px", color: "red" }}>Email Id or Password is wrong</span>
+                    }
                 </div>
+
                 <div>
                     <button className="button btn-primary btn-login cursor">Login</button>
                 </div>

@@ -1,16 +1,11 @@
 import "./Auth.css";
 import { useAuth, useAlert } from "../../context";
-// import {
-//   validateEmail,
-//   validateName,
-//   validateNumber,
-//   validatePassword,
-// } from "../../utils";
 import { validateEmail } from "../../utils/email-regex";
 import { validateName } from "../../utils/name-regex";
 import { validateNumber } from "../../utils/number-regex";
 import { validatePassword } from "../../utils/password-regex";
 import { signupHandler } from "../../services/signup-service";
+import { useState } from "react";
 
 let isNumberValid,
     isNameValid,
@@ -20,6 +15,14 @@ let isNumberValid,
 
 export const AuthSignup = () => {
     const { username, email, password, number, confirmPassword, authDispatch } = useAuth();
+    const [err, setErr] = useState({
+        nameErr: false,
+        numberErr: false,
+        emailErr: false,
+        passwordErr: false,
+        confirmPasswordErr: false
+
+    });
 
     const { setAlert } = useAlert();
 
@@ -31,8 +34,15 @@ export const AuthSignup = () => {
                 type: "NUMBER",
                 payload: event.target.value,
             });
+            setErr({
+                ...err,
+                numberErr: false
+            })
         } else {
-            console.log("Invalid Number");
+            setErr({
+                ...err,
+                numberErr: true
+            })
         }
     };
 
@@ -44,8 +54,16 @@ export const AuthSignup = () => {
                 type: "NAME",
                 payload: event.target.value,
             });
+            setErr({
+                ...err,
+                nameErr: false
+            })
+
         } else {
-            console.log("Invalid Name");
+            setErr({
+                ...err,
+                nameErr: true
+            })
         }
     };
 
@@ -57,8 +75,15 @@ export const AuthSignup = () => {
                 type: "EMAIL",
                 payload: event.target.value,
             });
+            setErr({
+                ...err,
+                emailErr: false
+            })
         } else {
-            console.log("Invalid Email");
+            setErr({
+                ...err,
+                emailErr: true
+            })
         }
     };
 
@@ -70,24 +95,39 @@ export const AuthSignup = () => {
                 type: "PASSWORD",
                 payload: event.target.value,
             });
+            setErr({
+                ...err,
+                passwordErr: false
+            })
         } else {
-            console.log("Invalid Password");
+            setErr({
+                ...err,
+                passwordErr: true
+            })
         }
     };
 
     const handleConfirmPasswordChange = (event) => {
-        isConfirmPasswordValid = validatePassword(event.target.value);
+        isConfirmPasswordValid = (event.target.value == password);
         if (isConfirmPasswordValid) {
             console.log("Valid Input");
             authDispatch({
                 type: "CONFIRM_PASSWORD",
                 payload: event.target.value,
             });
+            setErr({
+                ...err,
+                confirmPasswordErr: false
+            })
         } else {
-            console.log("Invalid Password");
+            setErr({
+                ...err,
+                confirmPasswordErr: true
+            })
         }
+
     };
-    // console.log({ username, email, password, number, confirmPassword });
+    console.log(err);
     const handleFormSubmit = (event) => {
         event.preventDefault();
         if (
@@ -125,6 +165,7 @@ export const AuthSignup = () => {
                         required
                         onChange={handleNumberChange}
                     />
+                    {err.numberErr && <span>At least have nine digits</span>}
                 </div>
                 <div className="d-flex direction-column lb-in-container">
                     <label className="auth-label">
@@ -137,6 +178,7 @@ export const AuthSignup = () => {
                         required
                         onChange={handleNameChange}
                     />
+                    {err.nameErr && <span>Name only can contains letters</span>}
                 </div>
                 <div className="d-flex direction-column lb-in-container">
                     <label className="auth-label">
@@ -150,6 +192,7 @@ export const AuthSignup = () => {
                         required
                         onChange={handleEmailChange}
                     />
+                    {err.emailErr && <span>Incorrect email</span>}
                 </div>
                 <div className="d-flex direction-column lb-in-container">
                     <label className="auth-label">
@@ -163,6 +206,7 @@ export const AuthSignup = () => {
                         required
                         onChange={handlePasswordChange}
                     />
+                    {err.passwordErr && <span>password should contain atleast one digit,one special character,one uppercase letter and one lowercase letter and min length should be 8</span>}
                 </div>
                 <div className="d-flex direction-column lb-in-container">
                     <label className="auth-label">
@@ -176,6 +220,7 @@ export const AuthSignup = () => {
                         required
                         onChange={handleConfirmPasswordChange}
                     />
+                    {err.confirmPasswordErr && <span>password does not match</span>}
                 </div>
                 <div>
                     <button className="button btn-primary btn-login cursor">
